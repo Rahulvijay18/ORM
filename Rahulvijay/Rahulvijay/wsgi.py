@@ -1,5 +1,5 @@
 """
-WSGI config for malak project.
+WSGI config for Rahulvijay project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'malak.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Rahulvijay.settings')
 
 application = get_wsgi_application()

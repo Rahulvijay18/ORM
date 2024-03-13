@@ -1,88 +1,53 @@
-# EX01 Developing a Simple Webserver
-## Date: 21.02.2024
+# Ex02 Django ORM Web Application
+## Date: 28\02\2024
 
-## AIM:
-To develop a simple webserver to serve html pages.
+## AIM
+To develop a Django application to store and retrieve data from a Book database using Object Relational Mapping(ORM).
 
-## DESIGN STEPS:
-### Step 1: 
-HTML content creation.
+## Entity Relationship Diagram
+![alt text](<entity relationship-1.jpeg>)
 
-### Step 2:
-Design of webserver workflow.
+## DESIGN STEPS
 
-### Step 3:
-Implementation using Python code.
+### STEP 1:
+Clone the problem from GitHub
 
-### Step 4:
-Serving the HTML pages.
+### STEP 2:
+Create a new app in Django project
 
-### Step 5:
-Testing the webserver.
+### STEP 3:
+Enter the code for admin.py and models.py
 
-## PROGRAM:
+### STEP 4:
+Execute Django admin and create details for 10 books
 
+## PROGRAM
+
+### models.py:
 ```
-from http.server import HTTPServer, BaseHTTPRequestHandler
-content = """
-<html>
-<head>
-<title>Software Companies</title>
-</head>
-<body bgcolor="pink">
-<table border="9" cellspacing="10" cellpadding="10" height="150" width="300" align="center">
-<caption> <h3>Top Five Revenue Generating Sotware Companies </h3></caption>
-<tr>
-<th>Company</th>
-<th>Sales(USD)</th>
-<th>Nationality</th>
-</tr>
-<tr>
-<th>Microsoft</th>
-<th>57.9</th>
-<th>USA</th>
-</tr>
-<tr>
-<th>Oracle</th>
-<th>21.0</th>
-<th>USA</th>
-</tr>
-<tr>
-<th>SAP</th>
-<th>16.1</th>
-<th>Germany</th>
-</tr>
-<tr>
-<th>Computer Associates</th>
-<th>4.2</th>
-<th>USA</th>
-</tr>
-<tr>
-<th>Electronic Arts</th>
-<th>3.2</th>
-<th>USA</th>
-</tr>
-</table>
-</body>
-</html>
-"""
-class myhandler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        print("request received")
-        self.send_response(200)
-        self.send_header('content-type', 'text/html; charset=utf-8')
-        self.end_headers()
-        self.wfile.write(content.encode())
-server_address = ('',8000)
-httpd = HTTPServer(server_address,myhandler)
-print("my webserver is running...")
-httpd.serve_forever()
+from django.db import models
+from django.contrib import admin
+class Book_DB(models.Model):
+      sno=models.IntegerField(primary_key="sno");
+      name=models.CharField(max_length=50);
+      author=models.CharField(max_length=70);
+      price=models.IntegerField();
+      publisher=models.CharField(max_length=60);
+
+class Book_DBAdmin(admin.ModelAdmin):
+    list_display=("sno","name","author","price","publisher");
+```
+ ### admin.py:
+ ```
+ from django.contrib import admin
+ from .models import Book_DB,Book_DBAdmin
+ admin.site.register(Book_DB,Book_DBAdmin)
 ```
 
-## OUTPUT:
+## OUTPUT
+![output](<Screenshot (1)-1.png>)
 
-![server](<Screenshot (2).png>)
-![output](<Screenshot 2024-03-12 112901.png>)
 
-## RESULT:
-The program for implementing simple webserver is executed successfully.
+
+## RESULT
+Thus the program for creating a database using ORM hass been executed successfully
